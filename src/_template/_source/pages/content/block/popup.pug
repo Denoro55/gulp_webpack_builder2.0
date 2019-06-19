@@ -1,0 +1,35 @@
+mixin popup(id)
+	.popup-wrapper(id=`popup${id}`)
+		+b.popup
+			+e.content
+				+e.H3.title.title Заказать обратный звонок
+				+b.FORM(action="/").popup-form
+
+					+e.field
+						+b.LABEL
+							+e.SPAN Телефон
+							+b.INPUT.popup-input.js-phone-mask(name="phone" type="tel" placeholder="+7 (ххх) ххх-хх-хх" tabindex="0")
+
+					+e.field
+						+b.star-selector
+							+e.left Ваша оценка:
+							+e.right.js-setstar
+								+e.item._active.js-set-star
+									+icon('star')
+								each i in [1,2,3,4]
+									+e.item.js-set-star
+										+icon('star')
+								input.setstar-input(name="stars" type="hidden" value="1")
+
+					+b.condition.popup-form__condition
+						+e.LABEL.label Я согласен на обработку персональных данных
+							+e.INPUT.checkbox(type="checkbox" tabindex="0")
+							+e.SPAN.checker
+
+
+
+					+e.bottom
+						+e.BUTTON.button.button(type="submit") Отправить
+
+			.popup__close.js-popup-close
+				img(src="svg/close.svg" alt="")
